@@ -1,0 +1,13 @@
+language: node_js
+
+cache:
+  directories:
+    - "backend/node_modules"
+
+node_js:
+  - "node"
+
+script:
+  - cd backend
+  - npm install
+  - npm test

@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+    server:
+        build: ./server
+        container_name: shopify-backend-server
+        environment:
+            TZ: "America/Montreal"
+        ports:
+            - "80:80"
+        volumes:
+            - ./server/static:/var/static
+
+    backend:
+        build: ./backend
+        container_name: shopify-backend
+        env_file:
+            - ./backend/.env
+        environment:
+            TZ: "America/Montreal"
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./backend/app:/usr/src/app
+
+    database:
+        build: ./database
+        container_name: shopify-db
+        env_file:
+            - ./database/.env
+        environment:
+            TZ: "America/Montreal"
+        restart: always
+        environment:
+            MYSQL_DATABASE: shopify_db
+            MYSQL_USER: user
+        volumes:
+            - mysql:/var/lib/mysql/
+
+volumes:
+    mysql:
+    
