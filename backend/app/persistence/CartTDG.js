@@ -84,4 +84,31 @@ export default class CartTDG {
             throw error;
         }
     }
+
+    static async delete(cartId, productId) {
+        try {
+            const query = `
+                DELETE FROM 
+                    CART_ENTRY
+                WHERE
+                    CART_ID=?
+                AND 
+                    PRODUCT_ID=?
+                LIMIT 1
+            `;
+
+            const result = await DatabaseUtil.sendQuery(query, [
+                cartId,
+                productId,
+            ]);
+
+            if (result.rows.affectedRows === 0) {
+                throw Error(`No product with id ${productId} in the cart with id ${cartId}`);
+            }
+
+            return;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

@@ -12,16 +12,17 @@ export default `
 
     type CartResponse {
         success: Boolean!
-        cart: Cart!
+        cart: Cart
         errors: [Error!]
     }
 
     type Mutation {
         addToCart(cartId: Int!, productId: Int!): CartResponse!
+        deleteFromCart(cartId: Int!, productId: Int!): CartResponse!
         checkout(id: Int!): CartResponse! 
     }
 
     type Query {
-        cart(id: Int!): Cart!
+        cart(id: Int!): Cart
     }
 `;
