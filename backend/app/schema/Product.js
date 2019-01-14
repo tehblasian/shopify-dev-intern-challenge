@@ -2,7 +2,7 @@ export default `
     type Product {
         id: Int!
         title: String!
-        price: String!
+        price: Float!
         inventory_count: Int!
     }
 
