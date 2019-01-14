@@ -87,5 +87,35 @@ export default {
                 };
             }
         },
+        checkout: async (parent, { id }) => {
+            try {
+                const cart = await CartTDG.find(id);
+                if (!cart) {
+                    return {
+                        success: false,
+                        cart: null,
+                        errors: [{
+                            message: `There is no cart with id ${id}`,
+                        }],
+                    };
+                }
+
+                await CartTDG.checkout(cart);
+
+                return {
+                    success: true,
+                    order: cart,
+                    errors: null,
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    cart: null,
+                    errors: [{
+                        message: `There was an error checking out the cart with id ${id}`,
+                    }],
+                };
+            }
+        },
     },
 };

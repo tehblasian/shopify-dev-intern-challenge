@@ -3,7 +3,7 @@ version: '3'
 services:
     server:
         build: ./server
-        container_name: shopify-backend-server
+        container_name: shopify-server
         environment:
             TZ: "America/Montreal"
         ports:
@@ -30,6 +30,8 @@ services:
             - ./database/.env
         environment:
             TZ: "America/Montreal"
+        ports:
+            - "3306:3306"
         restart: always
         environment:
             MYSQL_DATABASE: shopify_db

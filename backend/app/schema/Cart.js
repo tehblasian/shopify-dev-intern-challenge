@@ -16,10 +16,16 @@ export default `
         errors: [Error!]
     }
 
+    type CartCheckoutResponse {
+        success: Boolean!
+        order: Cart
+        errors: [Error!]
+    }
+
     type Mutation {
         addToCart(cartId: Int!, productId: Int!): CartResponse!
         deleteFromCart(cartId: Int!, productId: Int!): CartResponse!
-        checkout(id: Int!): CartResponse! 
+        checkout(id: Int!): CartCheckoutResponse! 
     }
 
     type Query {
