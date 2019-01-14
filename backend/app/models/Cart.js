@@ -4,9 +4,4 @@ export default class Cart {
         this.items = items;
         this.total = total;
     }
-
-    add(item) {
-        this.items = [...this.items, item];
-        this.total += item.product.price;
-    }
 }
