@@ -25,7 +25,7 @@ export default class ProductTDG {
                 prod.INVENTORY_COUNT,
             );
         } catch (error) {
-            console.log(error);
+            throw error;
         }
 
         return product;

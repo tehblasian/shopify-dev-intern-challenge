@@ -1,13 +1,13 @@
-import ProductTDG from '../persistence/ProductTDG';
 import Product from '../models/Product';
 
 export default {
     Query: {
-        product: async (parent, { id }) => ProductTDG.find(id),
-        products: async (parent, { options: { available } }) => ProductTDG.findAll({ available }),
+        product: async (parent, { id }, { ProductTDG }) => ProductTDG.find(id),
+        // eslint-disable-next-line max-len
+        products: async (parent, { options: { available } }, { ProductTDG }) => ProductTDG.findAll({ available }),
     },
     Mutation: {
-        purchase: async (parent, { id }) => {
+        purchase: async (parent, { id }, { ProductTDG }) => {
             try {
                 const product = await ProductTDG.find(id);
                 if (product.inventory_count === 0) {

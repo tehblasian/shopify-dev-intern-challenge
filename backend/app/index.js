@@ -5,6 +5,9 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import path from 'path';
 
+import ProductTDG from './persistence/ProductTDG';
+import CartTDG from './persistence/CartTDG';
+
 const app = express();
 
 // Create GraphQL schema
@@ -22,6 +25,10 @@ app.use(
     bodyParser.json(),
     graphqlExpress(() => ({
         schema,
+        context: {
+            ProductTDG,
+            CartTDG,
+        },
     })),
 );
 

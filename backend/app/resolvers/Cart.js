@@ -1,9 +1,6 @@
-import ProductTDG from '../persistence/ProductTDG';
-import CartTDG from '../persistence/CartTDG';
-
 export default {
     Query: {
-        cart: async (parent, { id }) => {
+        cart: async (parent, { id }, { CartTDG }) => {
             try {
                 const cart = await CartTDG.find(id);
                 if (!cart) {
@@ -17,7 +14,7 @@ export default {
         },
     },
     Mutation: {
-        addToCart: async (parent, { cartId, productId }) => {
+        addToCart: async (parent, { cartId, productId }, { ProductTDG, CartTDG }) => {
             try {
                 // Get product info
                 const product = await ProductTDG.find(productId);
@@ -51,7 +48,7 @@ export default {
                 };
             }
         },
-        deleteFromCart: async (parent, { cartId, productId }) => {
+        deleteFromCart: async (parent, { cartId, productId }, { ProductTDG, CartTDG }) => {
             try {
                 // Get product info
                 const product = await ProductTDG.find(productId);
@@ -87,7 +84,7 @@ export default {
                 };
             }
         },
-        checkout: async (parent, { id }) => {
+        checkout: async (parent, { id }, { CartTDG }) => {
             try {
                 const cart = await CartTDG.find(id);
                 if (!cart) {
