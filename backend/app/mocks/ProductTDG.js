@@ -22,10 +22,6 @@ const products = [
 export default class ProductTDG {
     static async find(id) {
         const product = products.find(p => p.id === id);
-        if (!product) {
-            throw Error;
-        }
-
         return product;
     }
 
